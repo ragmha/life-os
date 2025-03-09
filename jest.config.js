@@ -22,7 +22,7 @@ module.exports = {
 
   // Path mapping for cleaner imports
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
 
   // Test environment configuration

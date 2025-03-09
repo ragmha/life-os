@@ -11,7 +11,7 @@
 import '@testing-library/jest-native/extend-expect'
 
 // Import all mocks
-import './test/mocks'
+import './src/lib/test/mocks'
 
 // Mock timers for consistent timing in tests
 jest.useFakeTimers()

@@ -1,18 +1,22 @@
 import React, { ReactNode, createContext } from 'react'
+
 import {
   render as rtlRender,
   RenderOptions,
 } from '@testing-library/react-native'
 
-import { ThemeType } from '@/hooks/use-theme'
-import { mockLightTheme, mockDarkTheme, ThemeContextType } from '../mocks/theme'
+import {
+  ThemeContextType,
+  mockDarkTheme,
+  mockLightTheme,
+} from '@/lib/test/mocks'
 
 // Create a mock ThemeContext since the original is not exported
 export const MockThemeContext = createContext<ThemeContextType | undefined>(
   undefined,
 )
 
-interface TestProviderProps {
+type TestProviderProps = {
   children: ReactNode
   darkMode?: boolean
 }
@@ -32,9 +36,9 @@ export function TestThemeProvider({
 }
 
 // Custom render options
-interface CustomRenderOptions extends Omit<RenderOptions, 'wrapper'> {
+type CustomRenderOptions = {
   darkMode?: boolean
-}
+} & Omit<RenderOptions, 'wrapper'>
 
 /**
  * Custom render function that wraps the component with ThemeProvider

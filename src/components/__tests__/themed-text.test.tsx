@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ThemedText } from '@/components/themed-text'
 import { ThemeContextType } from '@/hooks/use-theme'
-import { render, screen } from '@/test/utils'
+import { render, screen } from '@/lib/test/utils'
 
 // Mock the useTheme hook with proper typing
 jest.mock('@/hooks/use-theme', () => {
