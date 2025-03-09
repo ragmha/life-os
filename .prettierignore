@@ -1,0 +1,28 @@
+# Build directories
+android/
+ios/
+build/
+dist/
+
+# Generated files
+*.generated.*
+*.g.*
+
+# Node modules
+node_modules/
+
+# Expo
+.expo/
+web-build/
+
+# Cache
+.cache/
+.turbo/
+
+# Coverage reports
+coverage/
+
+# Misc
+.DS_Store
+*.pem
+*.log 

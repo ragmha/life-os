@@ -26,7 +26,7 @@ type IconName =
   | 'chevron-forward'
 
 // Define types for our settings items
-interface SettingsItem {
+type SettingsItem = {
   id: string
   title: string
   value?: string
@@ -37,7 +37,7 @@ interface SettingsItem {
   testID?: string
 }
 
-interface SettingsSection {
+type SettingsSection = {
   title: string
   data: SettingsItem[]
 }

@@ -14,7 +14,7 @@ import { Colors } from '@/constants/colors'
 
 export type ThemeType = 'system' | 'dark' | 'light'
 
-interface ThemeContextType {
+export type ThemeContextType = {
   theme: ThemeType
   setTheme: (theme: ThemeType) => void
   isDarkMode: boolean
@@ -40,8 +40,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         setIsLoading(true)
         setError(null)
         const savedTheme = await AsyncStorage.getItem(THEME_STORAGE_KEY)
-        if (savedTheme && ['system', 'dark', 'light'].includes(savedTheme)) {
-          setThemeState(savedTheme as ThemeType)
+
+        // Use a type guard to validate the theme value
+        const isValidTheme = (value: string | null): value is ThemeType => {
+          return !!value && ['system', 'dark', 'light'].includes(value)
+        }
+
+        if (isValidTheme(savedTheme)) {
+          setThemeState(savedTheme)
         }
       } catch (error) {
         const errorMessage =

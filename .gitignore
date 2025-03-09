@@ -73,3 +73,6 @@ build-*.tar.gz
 .maestro/logs/
 .maestro/tests/
 artifacts/
+
+# Cursor
+.cursor/rules/

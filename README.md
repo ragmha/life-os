@@ -54,6 +54,31 @@ Build artifacts (.app, .ipa, .apk, etc.) are excluded from Git via .gitignore. I
 - CI/CD builds are stored as GitHub Actions artifacts
 - Release builds are managed through EAS and can be downloaded from the EAS dashboard
 
+## Git Hooks with Lefthook
+
+This project uses [Lefthook](https://github.com/evilmartians/lefthook) to manage Git hooks. Lefthook automatically runs checks before commits and pushes to ensure code quality.
+
+### Available Hooks
+
+- **pre-commit**: Runs linting, type checking, and formatting on staged files
+- **pre-push**: Runs tests before pushing to remote
+
+### Commands
+
+```bash
+# Run pre-commit hooks manually
+bun lefthook run pre-commit
+
+# Run pre-push hooks manually
+bun lefthook run pre-push
+
+# Reinstall hooks (if needed)
+bun lefthook:install
+
+# Uninstall hooks
+bun lefthook:uninstall
+```
+
 ## E2E Testing
 
 For end-to-end testing with Maestro, see [.maestro/README.md](.maestro/README.md).

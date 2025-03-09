@@ -3,12 +3,12 @@ import { View, Text, Button, StyleSheet } from 'react-native'
 
 import { useTheme } from '@/hooks/use-theme'
 
-interface ErrorBoundaryProperties {
+type ErrorBoundaryProperties = {
   children: ReactNode
   fallback?: ReactNode
 }
 
-interface ErrorBoundaryState {
+type ErrorBoundaryState = {
   hasError: boolean
   error: Error | null
 }

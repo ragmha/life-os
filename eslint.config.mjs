@@ -26,6 +26,9 @@ export default [
       '*.lock',
       '*.log',
       'expo-env.d.ts',
+      'test/mocks/**',
+      'test/setup/**',
+      'jest.config.js',
     ],
   },
   {
@@ -233,11 +236,7 @@ export default [
       'testing-library/no-dom-import': ['error', 'react-native'],
       'testing-library/no-node-access': 'error',
       'testing-library/no-promise-in-fire-event': 'error',
-      'testing-library/no-render-in-setup': 'error',
       'testing-library/no-unnecessary-act': 'error',
-      'testing-library/no-wait-for-empty-callback': 'error',
-      'testing-library/no-wait-for-multiple-assertions': 'error',
-      'testing-library/no-wait-for-side-effects': 'error',
       'testing-library/prefer-find-by': 'error',
       'testing-library/prefer-presence-queries': 'error',
       'testing-library/prefer-query-by-disappearance': 'error',
@@ -246,6 +245,8 @@ export default [
 
       // Add prettier rules to avoid conflicts
       ...prettierConfig.rules,
+
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     },
     settings: {
       'import/resolver': {
@@ -279,10 +280,6 @@ export default [
   {
     files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
     rules: {
-      // Relaxed rules for test files
-      'testing-library/prefer-explicit-assert': 'warn',
-      'testing-library/prefer-user-event': 'warn',
-      'testing-library/no-render-in-setup': 'off',
       'import/no-extraneous-dependencies': 'off',
 
       // Allow type assertions in test files, but prefer angle-bracket syntax

@@ -32,14 +32,53 @@ function getColorFromColors(theme: ColorScheme, colorName: ColorName): string {
   // Use a type-safe approach to access colors
   const themeColors = theme === 'light' ? Colors.light : Colors.dark
 
-  // Check if the color exists in the theme
-  if (Object.prototype.hasOwnProperty.call(themeColors, colorName)) {
-    // Type assertion is safe here because we've checked that the property exists
-    return themeColors[colorName as keyof typeof themeColors]
+  // Define a type-safe mapping function to avoid direct object injection
+  const getColorByName = (
+    colors: typeof themeColors,
+    name: ColorName,
+  ): string => {
+    // Use a switch statement instead of dynamic property access
+    switch (name) {
+      case 'text':
+        return colors.text
+      case 'textSecondary':
+        return colors.textSecondary
+      case 'link':
+        return colors.link
+      case 'background':
+        return colors.background
+      case 'card':
+        return colors.card
+      case 'tint':
+        return colors.tint
+      case 'primary':
+        return colors.primary
+      case 'icon':
+        return colors.icon
+      case 'tabIconDefault':
+        return colors.tabIconDefault
+      case 'tabIconSelected':
+        return colors.tabIconSelected
+      case 'separator':
+        return colors.separator
+      case 'success':
+        return colors.success
+      case 'warning':
+        return colors.warning
+      case 'neutral':
+        return colors.neutral
+      case 'border':
+        return colors.border
+      case 'shadow':
+        return colors.shadow
+      default:
+        // This should never happen since we're using a type-safe ColorName
+        return '#000000'
+    }
   }
 
-  // Fallback to a default color
-  return '#000000'
+  // Get the color using the safe mapping function
+  return getColorByName(themeColors, colorName)
 }
 
 /**
