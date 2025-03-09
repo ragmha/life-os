@@ -5,7 +5,7 @@
 
 import type { ColorScheme, ColorName } from '@/types/theme'
 
-import { Colors } from '../constants/colors'
+import { Colors } from '@/constants/colors'
 
 import { useColorScheme } from './use-color-scheme'
 

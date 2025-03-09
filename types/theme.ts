@@ -1,4 +1,4 @@
-import { Colors } from '../constants/colors'
+import { Colors } from '@/constants/colors'
 
 /**
  * Valid color schemes for the app

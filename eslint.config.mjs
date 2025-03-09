@@ -77,6 +77,19 @@ export default [
         },
       ],
 
+      // Enforce using '@/' imports instead of '../' relative imports
+      'no-restricted-imports': [
+        'warn',
+        {
+          patterns: [
+            {
+              group: ['../*'],
+              message: 'Use @/* imports instead of relative paths with ../',
+            },
+          ],
+        },
+      ],
+
       // Import sorting and organization
       'import/order': [
         'error',

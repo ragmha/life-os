@@ -1,5 +1,5 @@
-import { ThemeOption } from '../components/ui/theme-card'
-import { ThemeType } from '../hooks/use-theme'
+import { ThemeOption } from '@/components/ui/theme-card'
+import { ThemeType } from '@/hooks/use-theme'
 
 import { Colors } from './colors'
 

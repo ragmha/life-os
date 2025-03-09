@@ -10,7 +10,7 @@ import { useColorScheme, Alert } from 'react-native'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { Colors } from '../constants/colors'
+import { Colors } from '@/constants/colors'
 
 export type ThemeType = 'system' | 'dark' | 'light'
 
