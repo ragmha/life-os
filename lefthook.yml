@@ -10,6 +10,9 @@ pre-commit:
     format:
       glob: "*.{js,ts,jsx,tsx,json,md}"
       run: bun format
+    knip:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: bun knip
 
 pre-push:
   parallel: true
