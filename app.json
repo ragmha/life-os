@@ -47,6 +47,10 @@
         "origin": false
       }
     },
-    "owner": "rgbm21"
+    "owner": "rgbm21",
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/9d488633-cd79-4f88-a3a6-21ca5ef1c48c"
+    }
   }
 }

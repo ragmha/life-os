@@ -1,0 +1,12 @@
+name: Main Workflow
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    type: build
+    params:
+      platform: all
+      profile: preview 
