@@ -13,6 +13,7 @@ import unusedImportsPlugin from 'eslint-plugin-unused-imports'
 import prettierConfig from 'eslint-config-prettier'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
 import securityPlugin from 'eslint-plugin-security'
+import testingLibraryPlugin from 'eslint-plugin-testing-library'
 
 export default [
   // Ignore patterns (migrated from .eslintignore)
@@ -55,6 +56,7 @@ export default [
       unicorn: unicorn,
       'jsx-a11y': jsxA11yPlugin,
       security: securityPlugin,
+      'testing-library': testingLibraryPlugin,
     },
     rules: {
       // Prettier integration
@@ -153,6 +155,20 @@ export default [
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-non-null-assertion': 'warn',
 
+      // Prevent type assertions with 'as'
+      '@typescript-eslint/consistent-type-assertions': [
+        'error',
+        {
+          assertionStyle: 'never',
+        },
+      ],
+
+      // Enforce explicit types instead of inference with 'as'
+      '@typescript-eslint/no-unsafe-assignment': 'error',
+      '@typescript-eslint/no-unsafe-member-access': 'error',
+      '@typescript-eslint/no-unsafe-call': 'error',
+      '@typescript-eslint/no-unsafe-return': 'error',
+
       // Unicorn rules (selected subset)
       'unicorn/better-regex': 'error',
       'unicorn/catch-error-name': 'error',
@@ -209,6 +225,25 @@ export default [
       'security/detect-pseudoRandomBytes': 'warn',
       'security/detect-unsafe-regex': 'error',
 
+      // Testing Library rules
+      'testing-library/await-async-queries': 'error',
+      'testing-library/no-await-sync-queries': 'error',
+      'testing-library/no-container': 'error',
+      'testing-library/no-debugging-utils': 'warn',
+      'testing-library/no-dom-import': ['error', 'react-native'],
+      'testing-library/no-node-access': 'error',
+      'testing-library/no-promise-in-fire-event': 'error',
+      'testing-library/no-render-in-setup': 'error',
+      'testing-library/no-unnecessary-act': 'error',
+      'testing-library/no-wait-for-empty-callback': 'error',
+      'testing-library/no-wait-for-multiple-assertions': 'error',
+      'testing-library/no-wait-for-side-effects': 'error',
+      'testing-library/prefer-find-by': 'error',
+      'testing-library/prefer-presence-queries': 'error',
+      'testing-library/prefer-query-by-disappearance': 'error',
+      'testing-library/prefer-screen-queries': 'error',
+      'testing-library/render-result-naming-convention': 'error',
+
       // Add prettier rules to avoid conflicts
       ...prettierConfig.rules,
     },
@@ -238,6 +273,25 @@ export default [
     ],
     rules: {
       'unicorn/filename-case': 'off',
+    },
+  },
+  // Add specific configuration for test files
+  {
+    files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+    rules: {
+      // Relaxed rules for test files
+      'testing-library/prefer-explicit-assert': 'warn',
+      'testing-library/prefer-user-event': 'warn',
+      'testing-library/no-render-in-setup': 'off',
+      'import/no-extraneous-dependencies': 'off',
+
+      // Allow type assertions in test files, but prefer angle-bracket syntax
+      '@typescript-eslint/consistent-type-assertions': [
+        'warn',
+        {
+          assertionStyle: 'angle-bracket',
+        },
+      ],
     },
   },
 ]
