@@ -1,7 +1,6 @@
 import { ThemeOption } from '@/components/ui/theme-card'
-import { ThemeType } from '@/hooks/use-theme'
-
-import { Colors } from './colors'
+import { Colors } from '@/theme'
+import { ThemeType } from '@/theme/hooks'
 
 // Import the ThemeOption interface from our component
 

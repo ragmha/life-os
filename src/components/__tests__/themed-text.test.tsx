@@ -1,19 +1,19 @@
 import React from 'react'
 
 import { ThemedText } from '@/components/themed-text'
-import { ThemeContextType } from '@/hooks/use-theme'
 import { render, screen } from '@/lib/test/utils'
+import { ThemeContextType } from '@/theme/hooks/use-theme'
 
 // Mock the useTheme hook with proper typing
-jest.mock('@/hooks/use-theme', () => {
+jest.mock('@/theme/hooks/use-theme', () => {
   const { Colors } = jest.requireActual<{
-    Colors: typeof import('@/constants/colors').Colors
-  }>('@/constants/colors')
+    Colors: typeof import('@/theme').Colors
+  }>('@/theme')
 
-  const mockModule: typeof import('@/hooks/use-theme') = {
-    ...jest.requireActual<typeof import('@/hooks/use-theme')>(
-      '@/hooks/use-theme',
-    ),
+  const mockModule: {
+    useTheme: () => ThemeContextType
+  } = {
+    ...jest.requireActual('@/theme/hooks/use-theme'),
     useTheme: (): ThemeContextType => ({
       theme: 'light',
       setTheme: jest.fn(),

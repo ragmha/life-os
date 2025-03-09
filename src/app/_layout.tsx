@@ -6,7 +6,7 @@ import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import { ErrorBoundary } from '@/components/error-boundary'
-import { ThemeProvider, useTheme } from '@/hooks/use-theme'
+import { ThemeProvider, useTheme } from '@/theme/hooks'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()

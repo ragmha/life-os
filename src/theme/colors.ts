@@ -102,4 +102,4 @@ export const Colors = {
     // Shadows
     shadow: palette.black,
   },
-}
+} as const

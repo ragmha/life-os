@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Text, type TextProps, StyleSheet } from 'react-native'
 
-import { useTheme } from '@/hooks/use-theme'
+import { useTheme } from '@/theme/hooks'
 
 export type TextType =
   | 'default'

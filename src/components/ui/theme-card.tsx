@@ -9,7 +9,7 @@ import {
 
 import { Ionicons } from '@expo/vector-icons'
 
-import { useTheme, ThemeType } from '@/hooks/use-theme'
+import { useTheme, ThemeType } from '@/theme/hooks'
 
 // Define proper types for theme options
 export type ThemeOption = {

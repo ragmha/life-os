@@ -3,11 +3,10 @@
  * https://docs.expo.dev/guides/color-schemes/
  */
 
-import type { ColorScheme, ColorName } from '@/types/theme'
+import type { ColorScheme, ColorName } from '@/theme'
 
-import { Colors } from '@/constants/colors'
-
-import { useColorScheme } from './use-color-scheme'
+import { Colors } from '@/theme'
+import { useColorScheme } from '@/theme/hooks/use-color-scheme'
 
 /**
  * Safely get a color from properties based on theme

@@ -1,7 +1,7 @@
 import { Component, type ReactNode } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
 
-import { useTheme } from '@/hooks/use-theme'
+import { useTheme } from '@/theme/hooks'
 
 type ErrorBoundaryProperties = {
   children: ReactNode

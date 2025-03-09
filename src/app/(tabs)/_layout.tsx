@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import { Tabs } from 'expo-router'
 
-import { useTheme } from '@/hooks/use-theme'
+import { useTheme } from '@/theme/hooks'
 
 export default function TabLayout() {
   const { colors } = useTheme()

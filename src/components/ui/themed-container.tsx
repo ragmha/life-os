@@ -1,7 +1,7 @@
 import React, { ReactNode, useMemo } from 'react'
 import { StyleSheet, View, ViewStyle } from 'react-native'
 
-import { useTheme } from '@/hooks/use-theme'
+import { useTheme } from '@/theme/hooks'
 
 type ThemedContainerProperties = {
   children: ReactNode

@@ -5,8 +5,8 @@ import { Stack, useRouter } from 'expo-router'
 
 import { ThemeCard } from '@/components/ui/theme-card'
 import { ThemedContainer } from '@/components/ui/themed-container'
-import { getThemeOptions } from '@/constants/theme-options'
-import { useTheme, ThemeType } from '@/hooks/use-theme'
+import { useTheme, ThemeType } from '@/theme/hooks'
+import { getThemeOptions } from '@/theme/options'
 
 export default function ThemeSettingsScreen() {
   const { theme, setTheme, colors } = useTheme()

@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native'
 
 import { ThemedText } from '@/components/themed-text'
-import { useTheme } from '@/hooks/use-theme'
+import { useTheme } from '@/theme/hooks'
 
 /**
  * Home screen component that displays the main landing page of the app.

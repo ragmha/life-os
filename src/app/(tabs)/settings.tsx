@@ -10,9 +10,9 @@ import {
 import { Ionicons } from '@expo/vector-icons'
 import { router } from 'expo-router'
 
-import { Spacing, FontSize, FontWeight } from '@/constants/design-tokens'
-import { getThemeDisplayName } from '@/constants/theme-options'
-import { useTheme } from '@/hooks/use-theme'
+import { Spacing, FontSize, FontWeight } from '@/theme'
+import { useTheme } from '@/theme/hooks'
+import { getThemeDisplayName } from '@/theme/options'
 
 // Define a union type for the allowed icon names
 // Add all the icon names you expect to use

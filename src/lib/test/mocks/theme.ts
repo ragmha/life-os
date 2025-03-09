@@ -6,8 +6,8 @@
  * or import it in specific tests where needed.
  */
 
-import { Colors } from '@/constants/colors'
-import { ThemeType } from '@/hooks/use-theme'
+import { Colors } from '@/theme'
+import { ThemeType } from '@/theme/hooks'
 
 // Define the theme context type
 export type ThemeContextType = {
