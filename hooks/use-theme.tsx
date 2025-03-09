@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   createContext,
   useContext,
@@ -8,6 +7,8 @@ import {
   type ReactNode,
 } from 'react'
 import { useColorScheme, Alert } from 'react-native'
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { Colors } from '../constants/colors'
 

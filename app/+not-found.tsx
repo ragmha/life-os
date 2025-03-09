@@ -1,6 +1,7 @@
-import { Link, Stack } from 'expo-router'
 import { Fragment } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
+import { Link, Stack } from 'expo-router'
 
 import { useTheme } from '@/hooks/use-theme'
 

@@ -11,6 +11,8 @@ import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import reactNativePlugin from 'eslint-plugin-react-native'
 import unusedImportsPlugin from 'eslint-plugin-unused-imports'
 import prettierConfig from 'eslint-config-prettier'
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
+import securityPlugin from 'eslint-plugin-security'
 
 export default [
   // Ignore patterns (migrated from .eslintignore)
@@ -51,6 +53,8 @@ export default [
       'react-native': reactNativePlugin,
       'unused-imports': unusedImportsPlugin,
       unicorn: unicorn,
+      'jsx-a11y': jsxA11yPlugin,
+      security: securityPlugin,
     },
     rules: {
       // Prettier integration
@@ -78,6 +82,7 @@ export default [
         'error',
         {
           groups: [
+            'type',
             'builtin',
             'external',
             'internal',
@@ -85,13 +90,26 @@ export default [
             'sibling',
             'index',
             'object',
-            'type',
           ],
           'newlines-between': 'always',
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,
           },
+          pathGroups: [
+            {
+              pattern: '{react,react-native,react-dom}',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: '{@/**types/**,**/types,**/*.types}',
+              group: 'type',
+              position: 'before',
+            },
+          ],
+          pathGroupsExcludedImportTypes: ['type'],
+          warnOnUnassignedImports: true,
         },
       ],
 
@@ -135,6 +153,48 @@ export default [
       'unicorn/prefer-array-flat-map': 'error',
       'unicorn/prefer-includes': 'error',
       'unicorn/prefer-string-slice': 'error',
+
+      // Accessibility (a11y) rules
+      'jsx-a11y/alt-text': 'error',
+      'jsx-a11y/anchor-has-content': 'error',
+      'jsx-a11y/aria-props': 'error',
+      'jsx-a11y/aria-proptypes': 'error',
+      'jsx-a11y/aria-role': 'error',
+      'jsx-a11y/aria-unsupported-elements': 'error',
+      'jsx-a11y/click-events-have-key-events': 'warn',
+      'jsx-a11y/heading-has-content': 'error',
+      'jsx-a11y/html-has-lang': 'error',
+      'jsx-a11y/img-redundant-alt': 'error',
+      'jsx-a11y/interactive-supports-focus': 'warn',
+      'jsx-a11y/label-has-associated-control': 'error',
+      'jsx-a11y/media-has-caption': 'warn',
+      'jsx-a11y/mouse-events-have-key-events': 'warn',
+      'jsx-a11y/no-access-key': 'error',
+      'jsx-a11y/no-autofocus': 'warn',
+      'jsx-a11y/no-distracting-elements': 'error',
+      'jsx-a11y/no-interactive-element-to-noninteractive-role': 'error',
+      'jsx-a11y/no-noninteractive-element-interactions': 'warn',
+      'jsx-a11y/no-noninteractive-element-to-interactive-role': 'warn',
+      'jsx-a11y/no-redundant-roles': 'error',
+      'jsx-a11y/role-has-required-aria-props': 'error',
+      'jsx-a11y/role-supports-aria-props': 'error',
+      'jsx-a11y/scope': 'error',
+      'jsx-a11y/tabindex-no-positive': 'warn',
+
+      // Security rules
+      'security/detect-buffer-noassert': 'warn',
+      'security/detect-child-process': 'warn',
+      'security/detect-disable-mustache-escape': 'error',
+      'security/detect-eval-with-expression': 'error',
+      'security/detect-new-buffer': 'warn',
+      'security/detect-no-csrf-before-method-override': 'error',
+      'security/detect-non-literal-fs-filename': 'warn',
+      'security/detect-non-literal-regexp': 'warn',
+      'security/detect-non-literal-require': 'warn',
+      'security/detect-object-injection': 'warn',
+      'security/detect-possible-timing-attacks': 'warn',
+      'security/detect-pseudoRandomBytes': 'warn',
+      'security/detect-unsafe-regex': 'error',
 
       // Add prettier rules to avoid conflicts
       ...prettierConfig.rules,

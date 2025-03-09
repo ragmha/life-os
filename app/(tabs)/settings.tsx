@@ -1,5 +1,3 @@
-import { Ionicons } from '@expo/vector-icons'
-import { router } from 'expo-router'
 import { type ReactNode } from 'react'
 import {
   StyleSheet,
@@ -8,6 +6,9 @@ import {
   TouchableOpacity,
   SectionList,
 } from 'react-native'
+
+import { Ionicons } from '@expo/vector-icons'
+import { router } from 'expo-router'
 
 import { Spacing, FontSize, FontWeight } from '@/constants/design-tokens'
 import { getThemeDisplayName } from '@/constants/theme-options'

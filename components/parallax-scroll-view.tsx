@@ -1,4 +1,7 @@
+import type { PropsWithChildren, ReactElement } from 'react'
+
 import { StyleSheet } from 'react-native'
+
 import Animated, {
   interpolate,
   useAnimatedRef,
@@ -10,14 +13,25 @@ import { ThemedView } from '@/components/themed-view'
 import { useBottomTabOverflow } from '@/components/ui/tab-bar-background'
 import { useColorScheme } from '@/hooks/use-color-scheme'
 
-import type { PropsWithChildren, ReactElement } from 'react'
-
 const HEADER_HEIGHT = 250
 
 type Properties = PropsWithChildren<{
   headerImage: ReactElement
   headerBackgroundColor: { dark: string; light: string }
 }>
+
+// Function to safely get background color
+function getBackgroundColor(
+  colorScheme: string | null | undefined,
+  backgroundColors: { dark: string; light: string },
+): string {
+  // Use a safer approach with explicit conditions
+  if (colorScheme === 'dark') {
+    return backgroundColors.dark
+  }
+  // Default to light for any other value
+  return backgroundColors.light
+}
 
 export default function ParallaxScrollView({
   children,
@@ -49,6 +63,9 @@ export default function ParallaxScrollView({
     }
   })
 
+  // Get background color safely
+  const backgroundColor = getBackgroundColor(colorScheme, headerBackgroundColor)
+
   return (
     <ThemedView style={styles.container}>
       <Animated.ScrollView
@@ -58,11 +75,7 @@ export default function ParallaxScrollView({
         contentContainerStyle={{ paddingBottom: bottom }}
       >
         <Animated.View
-          style={[
-            styles.header,
-            { backgroundColor: headerBackgroundColor[colorScheme] },
-            headerAnimatedStyle,
-          ]}
+          style={[styles.header, { backgroundColor }, headerAnimatedStyle]}
         >
           {headerImage}
         </Animated.View>

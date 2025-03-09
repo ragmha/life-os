@@ -1,6 +1,7 @@
-import { Stack, useRouter } from 'expo-router'
 import React, { useMemo, useCallback } from 'react'
 import { StyleSheet, Text, ScrollView } from 'react-native'
+
+import { Stack, useRouter } from 'expo-router'
 
 import { ThemeCard } from '@/components/ui/theme-card'
 import { ThemedContainer } from '@/components/ui/themed-container'

@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons'
 import { ComponentProps, useMemo } from 'react'
 import {
   StyleSheet,
@@ -7,6 +6,8 @@ import {
   TouchableOpacity,
   AccessibilityState,
 } from 'react-native'
+
+import { Ionicons } from '@expo/vector-icons'
 
 import { useTheme, ThemeType } from '@/hooks/use-theme'
 
