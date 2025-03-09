@@ -1,19 +1,17 @@
-# Welcome to your Expo app 👋
-
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Life os
 
 ## Get started
 
 1. Install dependencies
 
    ```bash
-   npm install
+   bun install
    ```
 
 2. Start the app
 
    ```bash
-    npx expo start
+    bun start
    ```
 
 In the output, you'll find options to open the app in a
@@ -25,26 +23,121 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
+## Design Tokens
 
-When you're ready, run:
+This project uses a design token system to maintain consistent styling across the application. All design tokens are centralized in the `constants/` directory and exported from `constants/DesignTokens.ts`.
 
-```bash
-npm run reset-project
+### Using Design Tokens
+
+Instead of hardcoding values, always use the appropriate design tokens:
+
+```tsx
+import {
+  Colors,
+  Spacing,
+  FontSize,
+  FontWeight,
+  moderateScale,
+  deviceSpecific,
+} from "@/constants/DesignTokens";
+import { useTheme } from "@/hooks/useTheme";
+
+function MyComponent() {
+  const { isDarkMode } = useTheme();
+  const colorScheme = isDarkMode ? "dark" : "light";
+  const colors = Colors[colorScheme];
+
+  // Basic usage
+  return (
+    <View
+      style={{
+        backgroundColor: colors.background,
+        padding: Spacing.md, // 16
+        borderRadius: Spacing.borderRadius.md, // 8
+      }}
+    >
+      <Text
+        style={{
+          color: colors.text,
+          fontSize: FontSize.md, // 16
+          fontWeight: FontWeight.medium,
+          marginBottom: Spacing.sm, // 12
+        }}
+      >
+        Hello World
+      </Text>
+    </View>
+  );
+
+  // Responsive usage
+  return (
+    <View
+      style={{
+        padding: deviceSpecific({
+          phone: Spacing.md, // 16 on phones
+          tablet: Spacing.lg, // 24 on tablets
+        }),
+        fontSize: moderateScale(FontSize.md), // Scales based on screen size
+      }}
+    >
+      {/* Component content */}
+    </View>
+  );
+}
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Available Design Tokens
 
-## Learn more
+#### Colors
 
-To learn more about developing your project with Expo, look at the following resources:
+The color system is organized into semantic categories:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Text**: `text`, `textSecondary`
+- **Backgrounds**: `background`, `card`
+- **UI Elements**: `tint`, `primary`, `icon`, `tabIconDefault`, `tabIconSelected`, `separator`
+- **Status**: `success`, `warning`, `neutral`
+- **Borders**: `border`
+- **Shadows**: `shadow`
 
-## Join the community
+#### Spacing
 
-Join our community of developers creating universal apps.
+Spacing tokens provide consistent spacing throughout the app:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Core values**: `xxs` (4), `xs` (8), `sm` (12), `md` (16), `lg` (24), `xl` (32), `xxl` (48)
+- **Semantic spacing**: `gutter`, `itemSpacing`, `sectionSpacing`, `stackSpacing`, `inlineSpacing`
+- **Component-specific**: `cardPadding`, `buttonPadding`, `inputPadding`, `iconMargin`
+- **Border radius**: `borderRadius.sm`, `borderRadius.md`, `borderRadius.lg`, `borderRadius.xl`, `borderRadius.pill`
+
+#### Typography
+
+Typography tokens ensure consistent text styling:
+
+- **Font sizes**: `FontSize.xs` (12) through `FontSize.display` (36)
+- **Font weights**: `FontWeight.regular`, `FontWeight.medium`, `FontWeight.semibold`, `FontWeight.bold`
+- **Line heights**: `LineHeight.tight`, `LineHeight.normal`, `LineHeight.relaxed`
+- **Predefined text styles**: `TextStyle.h1` through `TextStyle.h5`, `TextStyle.bodyLarge`, `TextStyle.bodyMedium`, etc.
+
+#### Shadows
+
+Shadow tokens provide consistent elevation:
+
+- `Shadows.small`, `Shadows.medium`, `Shadows.large`
+- `createShadow(elevation)` helper function for custom shadows
+
+#### Responsive Utilities
+
+React Native-specific responsive utilities:
+
+- **Screen dimensions**: `SCREEN_WIDTH`, `SCREEN_HEIGHT`
+- **Scaling helpers**:
+  - `horizontalScale(size)` - Scale based on screen width
+  - `verticalScale(size)` - Scale based on screen height
+  - `moderateScale(size, factor)` - Scale with a moderation factor
+  - `normalizeFont(size)` - Normalize font size across devices
+- **Device detection**:
+  - `isTablet()` - Check if the device is a tablet
+  - `deviceSpecific({ phone, tablet })` - Return different values based on device type
+- **Accessibility**:
+  - `FONT_SCALE` - Get the user's font scale setting
+- **Orientation changes**:
+  - `addDimensionListener(callback)` - Listen for dimension changes
