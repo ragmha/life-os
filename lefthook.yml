@@ -13,6 +13,9 @@ pre-commit:
     knip:
       glob: "*.{js,ts,jsx,tsx}"
       run: bun knip
+    doctor:
+      run: bun x expo-doctor || echo "Expo doctor found issues, but continuing anyway"
+      skip_empty: true
 
 pre-push:
   parallel: true
