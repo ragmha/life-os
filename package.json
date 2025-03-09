@@ -20,7 +20,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "typecheck": "tsc --noEmit",
-    "knip": "knip",
+    "run:knip": "knip",
     "knip:production": "knip --production",
     "knip:strict": "knip --strict",
     "prebuild": "expo prebuild --clean",
@@ -38,7 +38,7 @@
     "e2e:devices": "echo 'iOS Simulators:' && xcrun simctl list devices booted && echo '\nAndroid Devices:' && adb devices",
     "e2e:debug": "maestro test .maestro/debug.yaml",
     "e2e:info": "node scripts/maestro-info.mjs",
-    "lefthook": "lefthook",
+    "run:lefthook": "lefthook",
     "lefthook:install": "lefthook install",
     "lefthook:uninstall": "lefthook uninstall"
   },
@@ -79,7 +79,6 @@
     "@testing-library/react-native": "^13.2.0",
     "@types/jest": "^29.5.12",
     "@types/react": "~18.3.12",
-    "@types/react-native": "^0.73.0",
     "eslint": "^9.22.0",
     "eslint-config-expo": "^8.0.1",
     "eslint-config-prettier": "^10.1.1",
@@ -100,5 +99,12 @@
     "prettier": "^3.5.3",
     "typescript": "^5.3.3"
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "listUnknownPackages": false
+      }
+    }
+  }
 }
