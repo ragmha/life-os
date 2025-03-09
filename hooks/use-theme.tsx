@@ -7,9 +7,9 @@ import {
   useMemo,
   type ReactNode,
 } from 'react'
-import { useColorScheme } from 'react-native'
+import { useColorScheme, Alert } from 'react-native'
 
-import { Colors } from '@/constants/Colors'
+import { Colors } from '../constants/colors'
 
 export type ThemeType = 'system' | 'dark' | 'light'
 
@@ -18,6 +18,8 @@ interface ThemeContextType {
   setTheme: (theme: ThemeType) => void
   isDarkMode: boolean
   colors: (typeof Colors)['light'] | (typeof Colors)['dark']
+  isLoading: boolean
+  error: string | null
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -28,18 +30,23 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const systemColorScheme = useColorScheme()
   const [theme, setThemeState] = useState<ThemeType>('system')
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   // Load saved theme on mount
   useEffect(() => {
     const loadTheme = async () => {
       try {
         setIsLoading(true)
+        setError(null)
         const savedTheme = await AsyncStorage.getItem(THEME_STORAGE_KEY)
         if (savedTheme && ['system', 'dark', 'light'].includes(savedTheme)) {
           setThemeState(savedTheme as ThemeType)
         }
       } catch (error) {
-        console.error('Failed to load theme:', error)
+        const errorMessage =
+          error instanceof Error ? error.message : String(error)
+        console.error('Failed to load theme:', errorMessage)
+        setError(`Failed to load theme: ${errorMessage}`)
         // Fallback to system theme if there's an error
       } finally {
         setIsLoading(false)
@@ -52,11 +59,21 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // Save theme when it changes
   const setTheme = async (newTheme: ThemeType) => {
     try {
+      setError(null)
       await AsyncStorage.setItem(THEME_STORAGE_KEY, newTheme)
       setThemeState(newTheme)
     } catch (error) {
-      console.error('Failed to save theme:', error)
-      // Consider showing a user-facing error message here
+      const errorMessage =
+        error instanceof Error ? error.message : String(error)
+      console.error('Failed to save theme:', errorMessage)
+      setError(`Failed to save theme: ${errorMessage}`)
+
+      // Show user-facing error message
+      Alert.alert(
+        'Theme Error',
+        'Failed to save theme preference. Please try again.',
+        [{ text: 'OK' }],
+      )
     }
   }
 
@@ -74,8 +91,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   // Memoize the context value to prevent unnecessary re-renders
   const contextValue = useMemo(() => {
-    return { theme, setTheme, isDarkMode, colors }
-  }, [theme, isDarkMode, colors])
+    return { theme, setTheme, isDarkMode, colors, isLoading, error }
+  }, [theme, isDarkMode, colors, isLoading, error])
 
   if (isLoading) {
     // You could return a loading indicator here if needed

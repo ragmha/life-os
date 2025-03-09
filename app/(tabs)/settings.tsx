@@ -9,15 +9,27 @@ import {
   SectionList,
 } from 'react-native'
 
-import { Spacing, FontSize, FontWeight } from '@/constants/DesignTokens'
-import { useTheme } from '@/hooks/useTheme'
+import { Spacing, FontSize, FontWeight } from '@/constants/design-tokens'
+import { getThemeDisplayName } from '@/constants/theme-options'
+import { useTheme } from '@/hooks/use-theme'
+
+// Define a union type for the allowed icon names
+// Add all the icon names you expect to use
+// For demonstration, I'm adding a few common ones
+// You should expand this list based on your usage
+
+type IconName =
+  | 'moon-outline'
+  | 'sunny-outline'
+  | 'phone-portrait-outline'
+  | 'chevron-forward'
 
 // Define types for our settings items
 interface SettingsItem {
   id: string
   title: string
   value?: string
-  icon?: string
+  icon?: IconName
   iconColor?: string
   onPress: () => void
   rightElement?: ReactNode
@@ -50,7 +62,7 @@ function SettingsListItem({
       <View style={styles.itemLeft}>
         {item.icon && (
           <Ionicons
-            name={item.icon as any}
+            name={item.icon}
             size={22}
             color={item.iconColor || textColor.color}
             style={styles.itemIcon}
@@ -81,7 +93,7 @@ function SettingsListItem({
  * Settings screen component that displays user configurable options
  */
 export default function SettingsScreen() {
-  const { theme, colors } = useTheme()
+  const { theme, colors, isDarkMode } = useTheme()
 
   // Set text and background colors based on the current theme
   const textColor = { color: colors.text }
@@ -93,26 +105,12 @@ export default function SettingsScreen() {
   }
   const separatorColor = colors.separator
 
-  // Get the current theme display name
-  const getThemeDisplayName = () => {
-    switch (theme) {
-      case 'system':
-        return 'System'
-      case 'dark':
-        return 'Dark'
-      case 'light':
-        return 'Light'
-      default:
-        return 'System'
-    }
-  }
-
   // Appearance settings
   const appearanceSettings: SettingsItem[] = [
     {
       id: 'theme',
       title: 'Theme',
-      value: getThemeDisplayName(),
+      value: getThemeDisplayName(theme, isDarkMode),
       icon:
         theme === 'dark'
           ? 'moon-outline'
@@ -173,43 +171,43 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  sectionHeader: {
-    fontSize: FontSize.md,
-    fontWeight: FontWeight.semibold,
-    paddingHorizontal: Spacing.gutter,
-    paddingTop: Spacing.lg,
-    paddingBottom: Spacing.xs,
-  },
   item: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.gutter,
-  },
-  itemLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    paddingVertical: Spacing.sm,
   },
   itemIcon: {
     marginRight: Spacing.iconMargin,
   },
-  itemTitle: {
-    fontSize: FontSize.md,
+  itemLeft: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   itemRight: {
-    flexDirection: 'row',
     alignItems: 'center',
+    flexDirection: 'row',
+  },
+  itemTitle: {
+    fontSize: FontSize.md,
   },
   itemValue: {
     fontSize: FontSize.md,
     marginRight: Spacing.xs,
   },
-  separator: {
-    height: 1,
-    marginLeft: Spacing.gutter,
+  sectionHeader: {
+    fontSize: FontSize.md,
+    fontWeight: FontWeight.semibold,
+    paddingBottom: Spacing.xs,
+    paddingHorizontal: Spacing.gutter,
+    paddingTop: Spacing.lg,
   },
   sectionSeparator: {
     height: Spacing.md,
+  },
+  separator: {
+    height: 1,
+    marginLeft: Spacing.gutter,
   },
 })

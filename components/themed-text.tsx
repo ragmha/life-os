@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Text, type TextProps, StyleSheet } from 'react-native'
 
-import { useTheme } from '@/hooks/useTheme'
+import { useTheme } from '@/hooks/use-theme'
 
 export type TextType =
   | 'default'
@@ -66,20 +66,20 @@ const styles = StyleSheet.create({
   },
   defaultSemiBold: {
     fontSize: 16,
-    lineHeight: 24,
     fontWeight: '600',
+    lineHeight: 24,
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
+  link: {
+    fontSize: 16,
+    lineHeight: 30,
   },
   subtitle: {
     fontSize: 20,
     fontWeight: 'bold',
   },
-  link: {
-    lineHeight: 30,
-    fontSize: 16,
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    lineHeight: 32,
   },
 })

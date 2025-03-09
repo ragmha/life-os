@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native'
 
-import { ThemedText } from '@/components/ThemedText'
-import { useTheme } from '@/hooks/useTheme'
+import { ThemedText } from '@/components/themed-text'
+import { useTheme } from '@/hooks/use-theme'
 
 /**
  * Home screen component that displays the main landing page of the app.
@@ -18,8 +18,8 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
   },
 })

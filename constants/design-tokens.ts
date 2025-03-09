@@ -4,7 +4,7 @@
  * Import from this file instead of individual token files.
  */
 
-import { Colors } from './Colors'
+import { Colors } from './colors'
 import {
   SCREEN_WIDTH,
   SCREEN_HEIGHT,
@@ -16,8 +16,8 @@ import {
   isTablet,
   addDimensionListener,
   deviceSpecific,
-} from './Responsive'
-import { Spacing, Shadows, createShadow } from './Spacing'
+} from './responsive'
+import { Spacing, Shadows, createShadow } from './spacing'
 import {
   FontFamily,
   FontSize,
@@ -25,7 +25,7 @@ import {
   LineHeight,
   LetterSpacing,
   TextStyle,
-} from './Typography'
+} from './typography'
 
 export {
   // Colors

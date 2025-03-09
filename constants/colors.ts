@@ -76,7 +76,7 @@ export const Colors = {
   dark: {
     // Text
     text: palette.textLight,
-    textSecondary: palette.gray400,
+    textSecondary: palette.gray300,
     link: palette.primaryLight,
 
     // Backgrounds

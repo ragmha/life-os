@@ -2,8 +2,10 @@ import { Stack } from 'expo-router'
 import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { useEffect, Fragment } from 'react'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import { ThemeProvider, useTheme } from '@/hooks/useTheme'
+import { ErrorBoundary } from '@/components/error-boundary'
+import { ThemeProvider, useTheme } from '@/hooks/use-theme'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -36,8 +38,12 @@ export default function RootLayout() {
   }, [])
 
   return (
-    <ThemeProvider>
-      <RootLayoutNav />
-    </ThemeProvider>
+    <ErrorBoundary>
+      <SafeAreaProvider>
+        <ThemeProvider>
+          <RootLayoutNav />
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </ErrorBoundary>
   )
 }

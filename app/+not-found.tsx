@@ -2,7 +2,7 @@ import { Link, Stack } from 'expo-router'
 import { Fragment } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-import { useTheme } from '@/hooks/useTheme'
+import { useTheme } from '@/hooks/use-theme'
 
 export default function NotFoundScreen() {
   const { colors } = useTheme()
@@ -15,9 +15,7 @@ export default function NotFoundScreen() {
           This screen doesn't exist.
         </Text>
         <Link href="/" style={styles.link}>
-          <Text style={[styles.linkText, { color: colors.link }]}>
-            Go to home screen!
-          </Text>
+          <Text style={{ color: colors.link }}>Go to home screen!</Text>
         </Link>
       </View>
     </Fragment>
@@ -26,20 +24,17 @@ export default function NotFoundScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
     padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
   },
   link: {
     marginTop: 15,
     paddingVertical: 15,
   },
-  linkText: {
-    color: 'blue',
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 })
