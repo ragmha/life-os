@@ -34,6 +34,7 @@ interface SettingsItem {
   iconColor?: string
   onPress: () => void
   rightElement?: ReactNode
+  testID?: string
 }
 
 interface SettingsSection {
@@ -59,6 +60,7 @@ function SettingsListItem({
     <TouchableOpacity
       style={[styles.item, sectionBgColor]}
       onPress={item.onPress}
+      testID={item.testID}
     >
       <View style={styles.itemLeft}>
         {item.icon && (
@@ -127,6 +129,7 @@ export default function SettingsScreen() {
       onPress: () => {
         router.push('/theme-settings')
       },
+      testID: 'settings-theme-row',
     },
   ]
 

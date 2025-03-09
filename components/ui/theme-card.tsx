@@ -24,12 +24,14 @@ type ThemeCardProperties = {
   option: ThemeOption
   isSelected: boolean
   onSelect: (themeType: ThemeType) => void
+  testID?: string
 }
 
 export function ThemeCard({
   option,
   isSelected,
   onSelect,
+  testID,
 }: ThemeCardProperties) {
   const { colors } = useTheme()
 
@@ -72,6 +74,7 @@ export function ThemeCard({
       accessibilityRole="radio"
       accessibilityState={accessibilityState}
       accessibilityLabel={accessibilityLabel}
+      testID={testID}
     >
       <View style={styles.cardHeader}>
         <Ionicons

@@ -1,0 +1,62 @@
+appId: io.raghib.lifeos
+---
+# Theme Test - Verifies that theme switching works correctly
+
+# Start the app and navigate to Settings
+- launchApp
+- assertVisible: "Home"
+- tapOn:
+    id: "tab-settings"
+- assertVisible: ".*"
+- takeScreenshot: settings-initial
+
+# Navigate to theme settings by tapping on the Theme row
+- tapOn:
+    id: "settings-theme-row"
+- assertVisible:
+    id: "theme-settings-header"
+- takeScreenshot: theme-settings
+
+# Select Dark theme
+- tapOn:
+    id: "theme-option-dark"
+- assertVisible: ".*"
+- takeScreenshot: settings-dark-mode
+
+# Go to home to verify theme change
+- tapOn:
+    id: "tab-home"
+- assertVisible: "Home"
+- takeScreenshot: home-dark-mode
+
+# Go back to settings
+- tapOn:
+    id: "tab-settings"
+- assertVisible: ".*"
+
+# Go back to theme settings
+- tapOn:
+    id: "settings-theme-row"
+- assertVisible:
+    id: "theme-settings-header"
+
+# Select Light theme
+- tapOn:
+    id: "theme-option-light"
+- assertVisible: ".*"
+- takeScreenshot: settings-light-mode
+
+# Go to home to verify theme change
+- tapOn:
+    id: "tab-home"
+- assertVisible: "Home"
+- takeScreenshot: home-light-mode
+
+# Reset to System theme for cleanup
+- tapOn:
+    id: "tab-settings"
+- tapOn:
+    id: "settings-theme-row"
+- tapOn:
+    id: "theme-option-system"
+- takeScreenshot: theme-reset 

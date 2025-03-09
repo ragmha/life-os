@@ -1,0 +1,33 @@
+appId: io.raghib.lifeos
+---
+# App Flow Test - Tests basic app navigation and functionality
+- launchApp
+- assertVisible: "Home"
+- takeScreenshot: home-screen
+
+# Log device and app information for debugging
+- evalScript: |
+    try {
+      console.log("App ID: " + maestro.appId);
+      console.log("Device: " + (maestro.device || "unknown"));
+      console.log("Platform: " + (maestro.platform || "unknown"));
+      console.log("Screen size: " + (maestro.screenWidth || "unknown") + "x" + (maestro.screenHeight || "unknown"));
+    } catch (e) {
+      console.log("Error getting Maestro info: " + e.message);
+    }
+
+# Test tab navigation
+- tapOn:
+    id: "tab-settings"
+- assertVisible: ".*"
+- takeScreenshot: settings-screen
+
+# Navigate back to Home tab
+- tapOn:
+    id: "tab-home"
+- assertVisible: "Home"
+- takeScreenshot: home-screen-final
+
+# Test back button functionality
+- back
+- takeScreenshot: after-back 

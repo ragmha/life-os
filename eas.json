@@ -10,6 +10,24 @@
         "resourceClass": "m-medium"
       }
     },
+    "development-simulator": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      },
+      "env": {
+        "MAESTRO_ENABLED": "true"
+      }
+    },
+    "development-apk": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "MAESTRO_ENABLED": "true"
+      }
+    },
     "preview": {
       "distribution": "internal",
       "ios": {
@@ -22,6 +40,19 @@
     "production": {
       "ios": {
         "resourceClass": "m-medium"
+      }
+    },
+    "e2e": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease :app:assembleAndroidTest -DtestBuildType=release",
+        "withoutCredentials": true
+      },
+      "ios": {
+        "simulator": true
+      },
+      "buildArtifactPaths": ["artifacts/**/*.png"],
+      "env": {
+        "MAESTRO_ENABLED": "true"
       }
     }
   },

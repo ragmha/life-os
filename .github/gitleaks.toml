@@ -1,0 +1,103 @@
+# GitLeaks Configuration for Life OS
+# This file defines rules for detecting secrets in the codebase
+
+title = "GitLeaks Configuration"
+
+# Global allowlist
+[allowlist]
+description = "Global allowlist"
+paths = [
+    '''node_modules''',
+    '''.git/''',
+    '''yarn.lock''',
+    '''bun.lockb''',
+    '''package-lock.json''',
+    '''artifacts/''',
+    '''dist/''',
+    '''build/''',
+    '''ios/build/''',
+    '''android/build/''',
+]
+
+# Specific rules for common secrets
+[[rules]]
+id = "generic-api-key"
+description = "Generic API Key"
+regex = '''(?i)((api|app|access)[_-]?(key|token|secret)|secret|password)[_-]?[=:]["']?[A-Za-z0-9+/]{16,}["']?'''
+tags = ["key", "API", "generic"]
+severity = "HIGH"
+
+[[rules]]
+id = "expo-token"
+description = "Expo Token"
+regex = '''(?i)(expo[_-]?(token|secret|key)|eas[_-]?(token|secret|key))[_-]?[=:]["']?[A-Za-z0-9+/]{16,}["']?'''
+tags = ["key", "expo", "eas"]
+severity = "CRITICAL"
+
+[[rules]]
+id = "aws-access-key"
+description = "AWS Access Key ID"
+regex = '''(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}'''
+tags = ["key", "AWS"]
+severity = "CRITICAL"
+
+[[rules]]
+id = "aws-secret-key"
+description = "AWS Secret Access Key"
+regex = '''(?i)aws[_-]?(secret|access)[_-]?(key|token)[_-]?[=:]["']?[A-Za-z0-9/+]{40}["']?'''
+tags = ["key", "AWS"]
+severity = "CRITICAL"
+
+[[rules]]
+id = "firebase-key"
+description = "Firebase API Key"
+regex = '''(?i)(firebase|google|gcm)[_-]?(server|api|web|mobile)[_-]?(key|token|secret)[_-]?[=:]["']?AIza[0-9A-Za-z-_]{35}["']?'''
+tags = ["key", "firebase", "google"]
+severity = "HIGH"
+
+[[rules]]
+id = "private-key"
+description = "Private Key"
+regex = '''-----BEGIN ((RSA|EC|DSA|OPENSSH) )?PRIVATE KEY( BLOCK)?-----'''
+tags = ["key", "private"]
+severity = "CRITICAL"
+
+[[rules]]
+id = "github-pat"
+description = "GitHub Personal Access Token"
+regex = '''(?i)github[_-]?(pat|token|key|secret)[_-]?[=:]["']?[A-Za-z0-9_]{40}["']?'''
+tags = ["key", "github", "pat"]
+severity = "CRITICAL"
+
+[[rules]]
+id = "env-var"
+description = "Environment Variable"
+regex = '''(?i)(dotenv|env|environment|secret|token|password|credential|api[_-]?key)[_-]?[=:]["']?[A-Za-z0-9+/]{8,}["']?'''
+tags = ["env", "secret"]
+severity = "MEDIUM"
+
+# Mobile-specific rules
+[[rules]]
+id = "ios-auth-token"
+description = "iOS Authentication Token"
+regex = '''(?i)(ios[_-]?(auth|token|key|secret)|apple[_-]?(auth|token|key|secret))[_-]?[=:]["']?[A-Za-z0-9+/]{8,}["']?'''
+tags = ["key", "ios", "apple"]
+severity = "HIGH"
+
+[[rules]]
+id = "android-auth-token"
+description = "Android Authentication Token"
+regex = '''(?i)(android[_-]?(auth|token|key|secret)|google[_-]?(auth|token|key|secret))[_-]?[=:]["']?[A-Za-z0-9+/]{8,}["']?'''
+tags = ["key", "android", "google"]
+severity = "HIGH"
+
+# Allowlist for test files
+[[rules.allowlist]]
+description = "Skip test files and mocks"
+paths = [
+    '''.*test\.tsx?$''',
+    '''.*spec\.tsx?$''',
+    '''.*mock\.tsx?$''',
+    '''__tests__/.*''',
+    '''__mocks__/.*''',
+] 

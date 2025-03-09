@@ -43,8 +43,13 @@ export default function ThemeSettingsScreen() {
         contentContainerStyle={styles.scrollContent}
         accessibilityRole="radiogroup"
         accessibilityLabel="Theme selection"
+        testID="theme-settings-scroll"
       >
-        <Text style={headerTextStyle} accessibilityRole="header">
+        <Text
+          style={headerTextStyle}
+          accessibilityRole="header"
+          testID="theme-settings-header"
+        >
           Choose your preferred appearance
         </Text>
 
@@ -54,6 +59,7 @@ export default function ThemeSettingsScreen() {
             option={option}
             isSelected={theme === option.id}
             onSelect={handleThemeChange}
+            testID={`theme-option-${option.id}`}
           />
         ))}
       </ScrollView>

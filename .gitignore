@@ -16,6 +16,33 @@ expo-env.d.ts
 *.p12
 *.key
 *.mobileprovision
+*.app
+*.ipa
+*.apk
+*.aab
+*.hprof
+*.xcarchive
+*.xcuserstate
+*.dSYM.zip
+*.dSYM
+
+# iOS
+ios/build/
+ios/Pods/
+ios/DerivedData/
+ios/*.xcworkspace/xcuserdata/
+ios/*.xcodeproj/xcuserdata/
+ios/*.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Android
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/captures/
+android/gradle/
+android/gradlew
+android/gradlew.bat
 
 # Metro
 .metro-health-check*
@@ -40,3 +67,9 @@ app-example
 # EAS
 .eas/
 dist/
+build-*.tar.gz
+
+# Maestro
+.maestro/logs/
+.maestro/tests/
+artifacts/

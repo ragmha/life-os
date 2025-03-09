@@ -8,8 +8,26 @@ on:
   workflow_dispatch:
 
 jobs:
+  secrets-scan:
+    name: Scan for Secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: GitLeaks Secret Scanner
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          config-path: .github/gitleaks.toml
+          enable-upload-artifact: true
+
   lint-and-test:
     name: Lint and Test
+    needs: secrets-scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -47,9 +65,74 @@ jobs:
       - name: Run tests
         run: bun run test -- --ci --coverage
 
+  e2e-tests:
+    name: E2E Tests
+    needs: lint-and-test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Cache Bun dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install Maestro
+        run: |
+          curl -Ls "https://get.maestro.mobile.dev" | bash
+          export PATH="$PATH":"$HOME/.maestro/bin"
+          echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+
+      - name: Build and run E2E tests on iOS simulator
+        if: false # Disabled until we have proper iOS setup in CI
+        run: |
+          eas build --platform ios --profile e2e --non-interactive --no-wait
+          eas build:run --platform ios --e2e
+
+      - name: Build and run E2E tests on Android emulator
+        if: false # Disabled until we have proper Android setup in CI
+        run: |
+          eas build --platform android --profile e2e --non-interactive --no-wait
+          eas build:run --platform android --e2e
+
+      - name: Upload Maestro artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: maestro-artifacts
+          path: artifacts
+
   build-and-publish:
     name: Build and Publish
-    needs: lint-and-test
+    needs: [lint-and-test, e2e-tests]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
