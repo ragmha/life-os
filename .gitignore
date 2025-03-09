@@ -67,7 +67,6 @@ yarn-error.*
 app-example
 
 # EAS
-.eas/
 dist/
 build-*.tar.gz
 

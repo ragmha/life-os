@@ -35,12 +35,14 @@
       },
       "android": {
         "buildType": "apk"
-      }
+      },
+      "channel": "preview"
     },
     "production": {
       "ios": {
         "resourceClass": "m-medium"
-      }
+      },
+      "channel": "production"
     },
     "e2e": {
       "android": {
@@ -53,10 +55,18 @@
       "buildArtifactPaths": ["artifacts/**/*.png"],
       "env": {
         "MAESTRO_ENABLED": "true"
-      }
+      },
+      "distribution": "internal",
+      "channel": "e2e"
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "YOUR_APPLE_ID",
+        "ascAppId": "YOUR_APP_STORE_CONNECT_APP_ID",
+        "appleTeamId": "YOUR_APPLE_TEAM_ID"
+      }
+    }
   }
 }
