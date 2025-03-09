@@ -10,7 +10,7 @@ import { Colors } from '@/constants/colors'
 import { ThemeType } from '@/hooks/use-theme'
 
 // Define the theme context type
-export interface ThemeContextType {
+export type ThemeContextType = {
   theme: ThemeType
   setTheme: (theme: ThemeType) => void
   isDarkMode: boolean

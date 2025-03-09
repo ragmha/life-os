@@ -17,7 +17,8 @@ module.exports = {
     'expo-*',
     'react-native-*',
     'react-dom',
-    'eslint-plugin-react',
+    'eslint-plugin-react-*',
+    '@babel/*',
   ],
 
   // Exports used in the same file that should be ignored

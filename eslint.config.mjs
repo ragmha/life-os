@@ -28,6 +28,8 @@ export default [
       'expo-env.d.ts',
       'test/mocks/**',
       'test/setup/**',
+      'src/lib/test/mocks/**',
+      'src/lib/test/setup/**',
       'knip.config.js',
       'jest.config.js',
     ],
