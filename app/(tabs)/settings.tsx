@@ -1,35 +1,31 @@
+import { Ionicons } from '@expo/vector-icons'
+import { router } from 'expo-router'
+import { type ReactNode } from 'react'
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   SectionList,
-} from "react-native";
-import { type ReactNode } from "react";
-import { useTheme } from "@/hooks/useTheme";
-import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
-import {
-  Colors,
-  Spacing,
-  FontSize,
-  FontWeight,
-} from "@/constants/DesignTokens";
+} from 'react-native'
+
+import { Spacing, FontSize, FontWeight } from '@/constants/DesignTokens'
+import { useTheme } from '@/hooks/useTheme'
 
 // Define types for our settings items
 interface SettingsItem {
-  id: string;
-  title: string;
-  value?: string;
-  icon?: string;
-  iconColor?: string;
-  onPress: () => void;
-  rightElement?: ReactNode;
+  id: string
+  title: string
+  value?: string
+  icon?: string
+  iconColor?: string
+  onPress: () => void
+  rightElement?: ReactNode
 }
 
 interface SettingsSection {
-  title: string;
-  data: SettingsItem[];
+  title: string
+  data: SettingsItem[]
 }
 
 /**
@@ -41,10 +37,10 @@ function SettingsListItem({
   sectionBgColor,
   secondaryTextColor,
 }: {
-  item: SettingsItem;
-  textColor: { color: string };
-  sectionBgColor: { backgroundColor: string };
-  secondaryTextColor: string;
+  item: SettingsItem
+  textColor: { color: string }
+  sectionBgColor: { backgroundColor: string }
+  secondaryTextColor: string
 }) {
   return (
     <TouchableOpacity
@@ -78,85 +74,70 @@ function SettingsListItem({
         )}
       </View>
     </TouchableOpacity>
-  );
+  )
 }
 
 /**
  * Settings screen component that displays user configurable options
  */
 export default function SettingsScreen() {
-  const { theme, isDarkMode, colors } = useTheme();
+  const { theme, colors } = useTheme()
 
   // Set text and background colors based on the current theme
-  const textColor = { color: colors.text };
+  const textColor = { color: colors.text }
   const backgroundColor = {
     backgroundColor: colors.background,
-  };
+  }
   const sectionBgColor = {
     backgroundColor: colors.card,
-  };
-  const separatorColor = colors.separator;
+  }
+  const separatorColor = colors.separator
 
   // Get the current theme display name
   const getThemeDisplayName = () => {
     switch (theme) {
-      case "system":
-        return "System";
-      case "dark":
-        return "Dark";
-      case "light":
-        return "Light";
+      case 'system':
+        return 'System'
+      case 'dark':
+        return 'Dark'
+      case 'light':
+        return 'Light'
       default:
-        return "System";
+        return 'System'
     }
-  };
+  }
 
   // Appearance settings
   const appearanceSettings: SettingsItem[] = [
     {
-      id: "theme",
-      title: "Theme",
+      id: 'theme',
+      title: 'Theme',
       value: getThemeDisplayName(),
       icon:
-        theme === "dark"
-          ? "moon-outline"
-          : theme === "light"
-          ? "sunny-outline"
-          : "phone-portrait-outline",
+        theme === 'dark'
+          ? 'moon-outline'
+          : theme === 'light'
+            ? 'sunny-outline'
+            : 'phone-portrait-outline',
       iconColor:
-        theme === "dark"
+        theme === 'dark'
           ? colors.neutral
-          : theme === "light"
-          ? colors.warning
-          : colors.primary,
+          : theme === 'light'
+            ? colors.warning
+            : colors.primary,
       onPress: () => {
-        router.push("/theme-settings");
+        router.push('/theme-settings')
       },
     },
-  ];
-
-  // Developer tools settings
-  const developerSettings: SettingsItem[] = [
-    {
-      id: "design-tokens",
-      title: "Design Tokens",
-      icon: "color-palette-outline",
-      iconColor: colors.primary,
-      onPress: () => {
-        // This route doesn't exist yet, so we'll comment it out for now
-        // router.push("/design-tokens");
-        // Show an alert or handle this differently
-      },
-    },
-  ];
+  ]
 
   // Combine all settings sections
   const settingsSections: SettingsSection[] = [
     {
-      title: "Appearance",
+      title: 'Appearance',
       data: appearanceSettings,
     },
-  ];
+  ]
 
   return (
     <View style={[styles.container, backgroundColor]}>
@@ -185,7 +166,7 @@ export default function SettingsScreen() {
         stickySectionHeadersEnabled={false}
       />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -200,15 +181,15 @@ const styles = StyleSheet.create({
     paddingBottom: Spacing.xs,
   },
   item: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingVertical: Spacing.sm,
     paddingHorizontal: Spacing.gutter,
   },
   itemLeft: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   itemIcon: {
     marginRight: Spacing.iconMargin,
@@ -217,8 +198,8 @@ const styles = StyleSheet.create({
     fontSize: FontSize.md,
   },
   itemRight: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   itemValue: {
     fontSize: FontSize.md,
@@ -231,4 +212,4 @@ const styles = StyleSheet.create({
   sectionSeparator: {
     height: Spacing.md,
   },
-});
+})

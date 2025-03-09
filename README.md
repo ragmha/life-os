@@ -39,13 +39,13 @@ import {
   FontWeight,
   moderateScale,
   deviceSpecific,
-} from "@/constants/DesignTokens";
-import { useTheme } from "@/hooks/useTheme";
+} from '@/constants/DesignTokens'
+import { useTheme } from '@/hooks/useTheme'
 
 function MyComponent() {
-  const { isDarkMode } = useTheme();
-  const colorScheme = isDarkMode ? "dark" : "light";
-  const colors = Colors[colorScheme];
+  const { isDarkMode } = useTheme()
+  const colorScheme = isDarkMode ? 'dark' : 'light'
+  const colors = Colors[colorScheme]
 
   // Basic usage
   return (
@@ -67,7 +67,7 @@ function MyComponent() {
         Hello World
       </Text>
     </View>
-  );
+  )
 
   // Responsive usage
   return (
@@ -82,7 +82,7 @@ function MyComponent() {
     >
       {/* Component content */}
     </View>
-  );
+  )
 }
 ```
 

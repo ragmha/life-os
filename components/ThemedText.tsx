@@ -1,19 +1,20 @@
-import { useMemo } from "react";
-import { Text, type TextProps, StyleSheet } from "react-native";
-import { useTheme } from "@/hooks/useTheme";
+import { useMemo } from 'react'
+import { Text, type TextProps, StyleSheet } from 'react-native'
+
+import { useTheme } from '@/hooks/useTheme'
 
 export type TextType =
-  | "default"
-  | "title"
-  | "defaultSemiBold"
-  | "subtitle"
-  | "link";
+  | 'default'
+  | 'title'
+  | 'defaultSemiBold'
+  | 'subtitle'
+  | 'link'
 
 export type ThemedTextProps = TextProps & {
-  lightColor?: string;
-  darkColor?: string;
-  type?: TextType;
-};
+  lightColor?: string
+  darkColor?: string
+  type?: TextType
+}
 
 /**
  * A themed text component that adapts to the current theme.
@@ -27,35 +28,35 @@ export function ThemedText({
   style,
   lightColor,
   darkColor,
-  type = "default",
+  type = 'default',
   ...rest
 }: ThemedTextProps) {
-  const { isDarkMode, colors } = useTheme();
+  const { isDarkMode, colors } = useTheme()
 
   // Determine the text color based on theme and custom colors
   const textColor = useMemo(() => {
-    if (isDarkMode && darkColor) return darkColor;
-    if (!isDarkMode && lightColor) return lightColor;
-    return colors.text;
-  }, [isDarkMode, darkColor, lightColor, colors.text]);
+    if (isDarkMode && darkColor) return darkColor
+    if (!isDarkMode && lightColor) return lightColor
+    return colors.text
+  }, [isDarkMode, darkColor, lightColor, colors.text])
 
   // Determine the style based on the type
   const typeStyle = useMemo(() => {
     switch (type) {
-      case "title":
-        return styles.title;
-      case "defaultSemiBold":
-        return styles.defaultSemiBold;
-      case "subtitle":
-        return styles.subtitle;
-      case "link":
-        return { ...styles.link, color: colors.link };
+      case 'title':
+        return styles.title
+      case 'defaultSemiBold':
+        return styles.defaultSemiBold
+      case 'subtitle':
+        return styles.subtitle
+      case 'link':
+        return { ...styles.link, color: colors.link }
       default:
-        return styles.default;
+        return styles.default
     }
-  }, [type, colors.link]);
+  }, [type, colors.link])
 
-  return <Text style={[{ color: textColor }, typeStyle, style]} {...rest} />;
+  return <Text style={[{ color: textColor }, typeStyle, style]} {...rest} />
 }
 
 const styles = StyleSheet.create({
@@ -66,19 +67,19 @@ const styles = StyleSheet.create({
   defaultSemiBold: {
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: "600",
+    fontWeight: '600',
   },
   title: {
     fontSize: 32,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     lineHeight: 32,
   },
   subtitle: {
     fontSize: 20,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   link: {
     lineHeight: 30,
     fontSize: 16,
   },
-});
+})

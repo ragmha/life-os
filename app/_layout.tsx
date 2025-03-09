@@ -1,20 +1,19 @@
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect, Fragment } from "react";
-import { ThemeProvider, useTheme } from "@/hooks/useTheme";
-import { Colors } from "@/constants/Colors";
+import { Stack } from 'expo-router'
+import * as SplashScreen from 'expo-splash-screen'
+import { StatusBar } from 'expo-status-bar'
+import { useEffect, Fragment } from 'react'
+
+import { ThemeProvider, useTheme } from '@/hooks/useTheme'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync()
 
 function RootLayoutNav() {
-  const { isDarkMode, colors } = useTheme();
-  const colorScheme = isDarkMode ? "dark" : "light";
+  const { isDarkMode, colors } = useTheme()
 
   return (
     <Fragment>
-      <StatusBar style={isDarkMode ? "light" : "dark"} />
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
       <Stack
         screenOptions={{
           headerStyle: {
@@ -25,20 +24,20 @@ function RootLayoutNav() {
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="theme" />
-        <Stack.Screen name="theme-settings" options={{ title: "Theme" }} />
+        <Stack.Screen name="theme-settings" options={{ title: 'Theme' }} />
       </Stack>
     </Fragment>
-  );
+  )
 }
 
 export default function RootLayout() {
   useEffect(() => {
-    SplashScreen.hideAsync();
-  }, []);
+    SplashScreen.hideAsync()
+  }, [])
 
   return (
     <ThemeProvider>
       <RootLayoutNav />
     </ThemeProvider>
-  );
+  )
 }

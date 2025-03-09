@@ -5,11 +5,11 @@
  */
 
 export const FontFamily = {
-  regular: "System",
-  medium: "System",
-  bold: "System",
+  regular: 'System',
+  medium: 'System',
+  bold: 'System',
   // Add custom fonts here if you're using them
-};
+}
 
 export const FontSize = {
   xs: 12,
@@ -20,27 +20,27 @@ export const FontSize = {
   xxl: 24,
   xxxl: 30,
   display: 36,
-};
+}
 
 // Using valid React Native font weight values
 export const FontWeight = {
-  regular: "400" as const,
-  medium: "500" as const,
-  semibold: "600" as const,
-  bold: "700" as const,
-};
+  regular: '400' as const,
+  medium: '500' as const,
+  semibold: '600' as const,
+  bold: '700' as const,
+}
 
 export const LineHeight = {
   tight: 1.2,
   normal: 1.5,
   relaxed: 1.75,
-};
+}
 
 export const LetterSpacing = {
   tight: -0.5,
   normal: 0,
   wide: 0.5,
-};
+}
 
 // Predefined text styles
 export const TextStyle = {
@@ -104,4 +104,4 @@ export const TextStyle = {
     fontWeight: FontWeight.medium,
     lineHeight: LineHeight.tight,
   },
-};
+}

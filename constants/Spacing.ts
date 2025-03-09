@@ -8,7 +8,7 @@
  * Base spacing unit in points (density-independent pixels)
  * All spacing values are derived from this base unit for consistency
  */
-const BASE_UNIT = 4;
+const BASE_UNIT = 4
 
 export const Spacing = {
   // Core spacing values
@@ -47,7 +47,7 @@ export const Spacing = {
     xl: BASE_UNIT * 4, // 16
     pill: 9999, // Pill shape
   },
-};
+}
 
 // Helper function to create consistent shadows
 export const createShadow = (elevation: number) => ({
@@ -55,11 +55,11 @@ export const createShadow = (elevation: number) => ({
   shadowOpacity: 0.1,
   shadowRadius: elevation * 0.5,
   elevation: elevation,
-});
+})
 
 // Common shadows
 export const Shadows = {
   small: createShadow(2),
   medium: createShadow(4),
   large: createShadow(8),
-};
+}

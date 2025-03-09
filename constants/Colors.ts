@@ -7,41 +7,41 @@
 // Base palette
 const palette = {
   // Primary colors
-  primary: "#4A6FFF",
-  primaryLight: "#0a7ea4",
+  primary: '#4A6FFF',
+  primaryLight: '#0a7ea4',
 
   // Neutrals
-  white: "#FFFFFF",
-  black: "#000000",
+  white: '#FFFFFF',
+  black: '#000000',
 
   // Grays
-  gray50: "#F5F5F5",
-  gray100: "#EEEEEE",
-  gray200: "#DDDDDD",
-  gray300: "#BBBBBB",
-  gray400: "#8E8E93",
-  gray500: "#6B6B6B",
-  gray600: "#666666",
-  gray700: "#333333",
-  gray800: "#1E1E1E",
-  gray900: "#121212",
+  gray50: '#F5F5F5',
+  gray100: '#EEEEEE',
+  gray200: '#DDDDDD',
+  gray300: '#BBBBBB',
+  gray400: '#8E8E93',
+  gray500: '#6B6B6B',
+  gray600: '#666666',
+  gray700: '#333333',
+  gray800: '#1E1E1E',
+  gray900: '#121212',
 
   // Text colors
-  textDark: "#11181C",
-  textLight: "#ECEDEE",
+  textDark: '#11181C',
+  textLight: '#ECEDEE',
 
   // Icon colors
-  iconDark: "#687076",
-  iconLight: "#9BA1A6",
+  iconDark: '#687076',
+  iconLight: '#9BA1A6',
 
   // Accent colors
-  yellow: "#FFB900",
-  blue: "#0a7ea4",
+  yellow: '#FFB900',
+  blue: '#0a7ea4',
 
   // Background colors
-  backgroundLight: "#FFFFFF",
-  backgroundDark: "#151718",
-};
+  backgroundLight: '#FFFFFF',
+  backgroundDark: '#151718',
+}
 
 export const Colors = {
   light: {
@@ -102,4 +102,4 @@ export const Colors = {
     // Shadows
     shadow: palette.black,
   },
-};
+}
