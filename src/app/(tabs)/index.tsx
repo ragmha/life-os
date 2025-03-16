@@ -1,6 +1,7 @@
-import { StyleSheet, View } from 'react-native'
+import React from 'react'
+import { StatusBar, StyleSheet, View } from 'react-native'
 
-import { AppText } from '@/components/text'
+import { Calendar } from '@/components/calendar'
 import { useTheme } from '@/theme/hooks'
 
 /**
@@ -11,15 +12,14 @@ export default function HomeScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <AppText type="title">Home</AppText>
+      <StatusBar />
+      <Calendar />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     flex: 1,
-    justifyContent: 'center',
   },
 })
