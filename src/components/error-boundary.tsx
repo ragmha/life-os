@@ -1,8 +1,6 @@
 import { Component, type ReactNode } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
 
-import { useTheme } from '@/theme/hooks'
-
 type ErrorBoundaryProperties = {
   children: ReactNode
   fallback?: ReactNode
@@ -86,29 +84,4 @@ const styles = StyleSheet.create({
  */
 export function ErrorBoundary({ children, fallback }: ErrorBoundaryProperties) {
   return <ErrorBoundaryClass fallback={fallback}>{children}</ErrorBoundaryClass>
-}
-
-/**
- * A themed fallback component for the ErrorBoundary
- */
-export function ThemedErrorFallback({
-  error,
-  resetError,
-}: {
-  error: Error | null
-  resetError: () => void
-}) {
-  const { colors } = useTheme()
-
-  return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <Text style={[styles.title, { color: colors.text }]}>
-        Something went wrong
-      </Text>
-      <Text style={[styles.message, { color: colors.text }]}>
-        {error?.message || 'An unexpected error occurred'}
-      </Text>
-      <Button title="Try again" onPress={resetError} color={colors.primary} />
-    </View>
-  )
 }
