@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from 'react-native'
 
 import { useTheme } from '@/theme/hooks'
 
-type ThemedContainerProperties = {
+type ContainerProps = {
   children: ReactNode
   style?: ViewStyle | ViewStyle[]
   accessibilityLabel?: string
@@ -13,11 +13,11 @@ type ThemedContainerProperties = {
  * A theme-aware container component that automatically applies the correct background color
  * based on the current theme.
  */
-export function ThemedContainer({
+export function Container({
   children,
   style,
   accessibilityLabel = 'Screen container',
-}: ThemedContainerProperties) {
+}: ContainerProps) {
   const { colors } = useTheme()
 
   // Memoize container style to prevent unnecessary object creation on re-renders

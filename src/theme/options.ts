@@ -1,4 +1,4 @@
-import { ThemeOption } from '@/components/ui/theme-card'
+import { ThemeOption } from '@/components/card'
 import { Colors } from '@/theme'
 import { ThemeType } from '@/theme/hooks'
 

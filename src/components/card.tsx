@@ -20,19 +20,14 @@ export type ThemeOption = {
   iconColor: string
 }
 
-type ThemeCardProperties = {
+type CardProps = {
   option: ThemeOption
   isSelected: boolean
   onSelect: (themeType: ThemeType) => void
   testID?: string
 }
 
-export function ThemeCard({
-  option,
-  isSelected,
-  onSelect,
-  testID,
-}: ThemeCardProperties) {
+export function Card({ option, isSelected, onSelect, testID }: CardProps) {
   const { colors } = useTheme()
 
   // Memoize dynamic styles to prevent unnecessary recalculations

@@ -22,6 +22,30 @@ appId: io.raghib.lifeos
 - assertVisible: ".*"
 - takeScreenshot: settings-screen
 
+# Test Calendar Component
+- tapOn:
+    id: "tab-home"
+- assertVisible: "Home"
+- takeScreenshot: calendar-view
+
+# Test current date is selected
+- assertVisible:
+    id: "calendar-container"
+- takeScreenshot: calendar-current-date
+
+# Test date selection by tapping on a different date
+- tapOn:
+    id: "day-item"
+    index: 1
+- takeScreenshot: calendar-date-selected
+
+# Test navigation between weeks
+- swipeLeft
+- takeScreenshot: calendar-previous-week
+- swipeRight
+- swipeRight
+- takeScreenshot: calendar-next-week
+
 # Navigate back to Home tab
 - tapOn:
     id: "tab-home"
