@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 
-import { ThemedText } from '@/components/themed-text'
+import { AppText } from '@/components/text'
 import { useTheme } from '@/theme/hooks'
 
 /**
@@ -11,7 +11,7 @@ export default function HomeScreen() {
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      <ThemedText type="title">Home</ThemedText>
+      <AppText type="title">Home</AppText>
     </View>
   )
 }

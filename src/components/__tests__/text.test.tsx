@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ThemedText } from '@/components/themed-text'
+import { AppText } from '@/components/text'
 import { render, screen } from '@/lib/test/utils'
 import { ThemeContextType } from '@/theme/hooks/use-theme'
 
@@ -26,9 +26,9 @@ jest.mock('@/theme/hooks/use-theme', () => {
   return mockModule
 })
 
-describe('ThemedText', () => {
+describe('AppText', () => {
   it('renders correctly', () => {
-    render(<ThemedText>Testing Library Test</ThemedText>)
+    render(<AppText>Testing Library Test</AppText>)
 
     // Using screen queries as recommended by Testing Library
     // We can ignore the TypeScript error since we're just checking if the element exists
@@ -36,7 +36,7 @@ describe('ThemedText', () => {
   })
 
   it('applies custom light color when provided', () => {
-    render(<ThemedText lightColor="#FF0000">Custom Color Text</ThemedText>)
+    render(<AppText lightColor="#FF0000">Custom Color Text</AppText>)
 
     // We can ignore the TypeScript error since we're just checking if the element exists
     expect(screen.getByText('Custom Color Text')).toBeTruthy()
@@ -44,7 +44,7 @@ describe('ThemedText', () => {
   })
 
   it('renders correctly in dark mode', () => {
-    render(<ThemedText>Dark Mode Text</ThemedText>, { darkMode: true })
+    render(<AppText>Dark Mode Text</AppText>, { darkMode: true })
 
     expect(screen.getByText('Dark Mode Text')).toBeTruthy()
   })

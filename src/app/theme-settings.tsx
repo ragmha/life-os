@@ -3,8 +3,8 @@ import { StyleSheet, Text, ScrollView } from 'react-native'
 
 import { Stack, useRouter } from 'expo-router'
 
-import { ThemeCard } from '@/components/ui/theme-card'
-import { ThemedContainer } from '@/components/ui/themed-container'
+import { Card } from '@/components/card'
+import { Container } from '@/components/container'
 import { useTheme, ThemeType } from '@/theme/hooks'
 import { getThemeOptions } from '@/theme/options'
 
@@ -31,7 +31,7 @@ export default function ThemeSettingsScreen() {
   )
 
   return (
-    <ThemedContainer>
+    <Container>
       <Stack.Screen
         options={{
           title: 'Theme',
@@ -54,7 +54,7 @@ export default function ThemeSettingsScreen() {
         </Text>
 
         {themeOptions.map((option) => (
-          <ThemeCard
+          <Card
             key={option.id}
             option={option}
             isSelected={theme === option.id}
@@ -63,7 +63,7 @@ export default function ThemeSettingsScreen() {
           />
         ))}
       </ScrollView>
-    </ThemedContainer>
+    </Container>
   )
 }
 

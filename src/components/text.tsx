@@ -10,7 +10,7 @@ export type TextType =
   | 'subtitle'
   | 'link'
 
-export type ThemedTextProps = TextProps & {
+export type AppTextProps = TextProps & {
   lightColor?: string
   darkColor?: string
   type?: TextType
@@ -24,13 +24,13 @@ export type ThemedTextProps = TextProps & {
  * @param darkColor - Custom color to use in dark mode
  * @param type - Predefined text style to use
  */
-export function ThemedText({
+export function AppText({
   style,
   lightColor,
   darkColor,
   type = 'default',
   ...rest
-}: ThemedTextProps) {
+}: AppTextProps) {
   const { isDarkMode, colors } = useTheme()
 
   // Determine the text color based on theme and custom colors
