@@ -77,3 +77,6 @@ artifacts/
 
 # Cursor
 .cursor/rules/
+
+# npm lockfile (project uses bun)
+package-lock.json
