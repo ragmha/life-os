@@ -25,6 +25,7 @@ function RootLayoutNav() {
           headerTintColor: colors.text,
         }}
       >
+        <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="theme" />
         <Stack.Screen name="theme-settings" options={{ title: 'Theme' }} />

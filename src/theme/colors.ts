@@ -61,6 +61,7 @@ export const Colors = {
     tabIconDefault: palette.iconDark,
     tabIconSelected: palette.primaryLight,
     separator: palette.gray100,
+    buttonText: palette.white,
 
     // Status
     success: palette.primary,
@@ -90,6 +91,7 @@ export const Colors = {
     tabIconDefault: palette.iconLight,
     tabIconSelected: palette.white,
     separator: palette.gray700,
+    buttonText: palette.white,
 
     // Status
     success: palette.primary,
