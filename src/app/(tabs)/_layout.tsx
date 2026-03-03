@@ -36,6 +36,17 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="status"
+        options={{
+          title: 'Status',
+          tabBarIcon: ({ color, size }) => (
+            <View testID="tab-status">
+              <Ionicons name="pulse" size={size} color={color} />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="settings"
         options={{
           title: 'Settings',

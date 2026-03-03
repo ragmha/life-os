@@ -22,6 +22,12 @@ appId: io.raghib.lifeos
 - assertVisible: ".*"
 - takeScreenshot: settings-screen
 
+# Test Status tab
+- tapOn:
+    id: "tab-status"
+- assertVisible: "Status"
+- takeScreenshot: status-screen
+
 # Navigate back to Home tab
 - tapOn:
     id: "tab-home"
